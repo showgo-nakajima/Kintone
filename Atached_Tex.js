@@ -7,27 +7,27 @@
 
 (function () {
   'use strict';
+
   kintone.events.on(
     [
       'app.record.create.change.単価',
       'app.record.edit.change.単価'
     ],
     function (event) {
-      // on change
       const record = event.record;
-      const taxRate = 0.1;
 
-      const price = record.単価.value;
-
+      const basePrice = Number(record.単価.value);
       // 未入力・0・NaN対策
-      if (!price) {
-        return event;
-      }
+      if (isNaN(basePrice)) return event;
+      if (!record.税区分.value) return event;
 
-      // 税込み計算
-      const taxtedPrice = Math.round(price * taxRate);
+      // 税率取得
+      const TAXRATE = record.税区分.value === '8%' ? 0.08 : 0.10;
 
-      record.単価.value = taxtedPrice;
+      // 税込み計算（1回だけ）
+      record.税込み価格.value = Math.round(
+        basePrice * (1 + TAXRATE)
+      );
 
       return event;
     }
