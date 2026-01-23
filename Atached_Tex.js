@@ -5,7 +5,7 @@
  * 税率は10%
  */
 
-kintone.kintone.events.on(
+kintone.events.on(
  [
  'app.record.create.change.単価',
  'app.record.edit.change.単価'
