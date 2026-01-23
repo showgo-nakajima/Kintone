@@ -20,7 +20,6 @@
       'app.record.edit.change.税区分'
     ],
     function (event) {
-
       const record = event.record;
 
       const basePrice = Number(record.単価.value);
@@ -35,6 +34,8 @@
       record.税込み価格.value = Math.round(
         basePrice * (1 + TAXRATE)
       );
+      // 税込み価格フィールドは編集不可とし表示専用とする。
+      event.record['税込み価格'].disabled = true;
 
       return event;
     }
