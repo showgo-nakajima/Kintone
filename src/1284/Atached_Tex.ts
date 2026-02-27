@@ -1,6 +1,3 @@
-declare const kintone: any;
-
-(function () {
   'use strict';
 
   // --- フィールド型定義 ---
@@ -16,17 +13,12 @@ declare const kintone: any;
     販売開始日: DateField;
   }
 
-  interface KintoneEvent {
-    record: AppRecord;
-  }
-
-  const EVENTS: string[] = [
+  kintone.events.on([
     'app.record.edit.change.アセット名',
     'app.record.create.change.アセット名'
-  ];
-
-  kintone.events.on(EVENTS, (event: KintoneEvent) => {
+  ], (event) => {
     const record = event.record;
+    debugger;
 
     const assetName = record.アセット名.value ?? '';
 
@@ -51,7 +43,4 @@ declare const kintone: any;
 
     return event;
   });
-
-})();
-
-export {};
+export{};
