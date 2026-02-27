@@ -1,6 +1,3 @@
-declare const kintone: any;
-
-(function () {
   'use strict';
 
   // --- フィールド型定義 ---
@@ -12,21 +9,16 @@ declare const kintone: any;
     アセット名: TextField;
     単価: NumberField;
     税込み価格: NumberField;
-    ステータス: TextField;
+    ステータス1: TextField;
     販売開始日: DateField;
   }
 
-  interface KintoneEvent {
-    record: AppRecord;
-  }
-
-  const EVENTS: string[] = [
+  kintone.events.on([
     'app.record.edit.change.アセット名',
     'app.record.create.change.アセット名'
-  ];
-
-  kintone.events.on(EVENTS, (event: KintoneEvent) => {
+  ], (event) => {
     const record = event.record;
+    debugger;
 
     const assetName = record.アセット名.value ?? '';
 
@@ -37,7 +29,7 @@ declare const kintone: any;
     // 初期化処理
     record.単価.value = '';
     record.税込み価格.value = '';
-    record.ステータス.value = '----';
+    record.ステータス1.value = '';
 
     const today = new Date();
     const formatted =
@@ -51,7 +43,3 @@ declare const kintone: any;
 
     return event;
   });
-
-})();
-
-export {};
