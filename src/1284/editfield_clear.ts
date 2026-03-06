@@ -1,4 +1,5 @@
-  'use strict';
+(function () {
+'use strict';
 
   // --- フィールド型定義 ---
   type TextField = { value: string };
@@ -43,3 +44,4 @@
 
     return event;
   });
+});

@@ -1,4 +1,5 @@
-  'use strict';
+(function () {
+'use strict';
 
   // --- フィールド型定義 ---
   type TextField = { value: string };
@@ -9,7 +10,7 @@
     アセット名: TextField;
     単価: NumberField;
     税込み価格: NumberField;
-    ステータス: TextField;
+    ステータス1: TextField;
     販売開始日: DateField;
   }
 
@@ -29,7 +30,7 @@
     // 初期化処理
     record.単価.value = '';
     record.税込み価格.value = '';
-    record.ステータス.value = '----';
+    record.ステータス1.value = '';
 
     const today = new Date();
     const formatted =
@@ -43,4 +44,4 @@
 
     return event;
   });
-export{};
+});
