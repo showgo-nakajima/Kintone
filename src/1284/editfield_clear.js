@@ -6,7 +6,6 @@
     ], (event) => {
         var _a;
         const record = event.record;
-        debugger;
         const assetName = (_a = record.アセット名.value) !== null && _a !== void 0 ? _a : '';
         const isEmpty = assetName.trim() === '';
         if (!isEmpty)
