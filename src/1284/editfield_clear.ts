@@ -14,10 +14,14 @@
     販売開始日: DateField;
   }
 
+  interface KintoneEvent {
+    record: AppRecord;
+  }
+
   kintone.events.on([
     'app.record.edit.change.アセット名',
     'app.record.create.change.アセット名'
-  ], (event) => {
+  ], (event: KintoneEvent) => {
     const record = event.record;
     debugger;
 
@@ -44,4 +48,4 @@
 
     return event;
   });
-});
+})();
