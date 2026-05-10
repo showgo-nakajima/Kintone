@@ -23,8 +23,7 @@
     'app.record.create.change.アセット名'
   ], (event: KintoneEvent) => {
     const record = event.record;
-    debugger;
-
+    
     const assetName = record.アセット名.value ?? '';
 
     const isEmpty = assetName.trim() === '';
