@@ -21,6 +21,13 @@ SCR005	 所持管理画面 	   所持数管理
 4. カード画像	card_image	添付ファイル
 5. 属性	attribute	ドロップダウン
 6. 種族	race	ドロップダウン
+  炎属性（FIRE）
+  水属性（WATER）
+  地属性（EARTH）
+  風属性（WIND）
+  光属性（LIGHT）
+  闇属性（DARK）
+  神属性（DIVINE）
 7. レベル	level	数値
 8. 攻撃力	atk	数値
 9. 守備力	def	数値
