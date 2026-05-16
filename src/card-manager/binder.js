@@ -42,9 +42,44 @@
     }
 
     //カードマスタ検索
-    
+    const resp = await kintone.api(
+     kintone.api.url('/k/v1/records.json', true),
+     'GET',
+     {
+      app: 8,
+      query: `カード名 = "${FLD_CardName}"`
+     }
+    );
+
+    if (resp.records.length === 0) {
+     continue;
+    }
+
+    // 制限区分取得
+    const limitType = resp.records[0]['制限区分'].value;
+
+    // 最大枚数
+    const maxCount = LIMIT_MAP[limitType] || 3;
+
+    // 集計
+    if (!totalMap[cardName]) {
+     totalMap[cardName] = 0;
+    }
+
+    totalMap[cardName] += cardCount;
+
+    // 制限枚数超過
+    if (totalMap[cardName] > maxCount) {
+
+     event.error = 
+     `${cardName} は `
+     + `${limitType}カードのため`
+     + `${maxCount}枚までです`
+
+     return event;
+    }
    }
-   // 処理
+
    return event;
  });
-})
+})();
