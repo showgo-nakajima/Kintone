@@ -18,10 +18,10 @@
  /**
   * イベント定義
   */
- kintone.kintone.events.on(
+ kintone.events.on(
   [
    'app.record.create.submit',
-   'app.record.create.submit'
+   'app.record.edit.submit'
   ], async function (event) {
 
    const record = event.record;
@@ -34,10 +34,10 @@
    for (const row of rows) {
 
     const cardName = row.value[FLD_CardName].value;
-    const cardCount = Number(rows.value[FLD_Count].value);
+    const cardCount = Number(row.value[FLD_Count].value);
 
     // 空行はスキップ
-    if (!cardName || cardCount) {
+    if (!cardName || !cardCount) {
      continue;
     }
 
@@ -47,7 +47,7 @@
      'GET',
      {
       app: 8,
-      query: `カード名 = "${FLD_CardName}"`
+      query: `カード名 = "${cardName}"`
      }
     );
 
@@ -74,7 +74,7 @@
      event.error = 
      `${cardName} は `
      + `${limitType}カードのため`
-     + `${maxCount}枚までです`
+     + `${maxCount}枚までです`;
 
      return event;
     }
