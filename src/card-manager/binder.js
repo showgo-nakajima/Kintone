@@ -47,7 +47,7 @@
      'GET',
      {
       app: 8,
-      query: `カード名 = "${cardName}"`
+      query: `カード名 = ${cardName}`
      }
     );
 
