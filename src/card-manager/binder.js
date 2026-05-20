@@ -75,7 +75,6 @@
      `${cardName} は `
      + `${limitType}カードのため`
      + `${maxCount}枚までです`;
-
      return event;
     }
    }
